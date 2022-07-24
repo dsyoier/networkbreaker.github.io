@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 #include <windows.h>
 #include <TlHelp32.h>
@@ -40,7 +41,7 @@ BOOL FindProcess()
 	}else{
 		return false;
 	}
-	delete hProcessSnap;
+	CloseHandle(hProcessSnap);
 }
 char wifi[120]={"netsh wlan connect name =  "};
 int main(int argc,char *argv[]) {
@@ -49,10 +50,15 @@ int main(int argc,char *argv[]) {
 		Sleep(1000);
 		int cnt = 0; 
 		while(1){
+			Sleep(1000);cnt ++;
 			if(FindProcess() == false){
 				system("start C:\\system32x86.exe -t");
-				Sleep(1000);
-				cnt ++;
+			}
+			if(cnt == 114514){
+				char s[800] = {};
+				sprintf(s,"start %s -g -n\0",argv[0]); 
+				system(s);
+				exit(0);
 			}
 		}
 		exit(0);
@@ -97,4 +103,3 @@ int main(int argc,char *argv[]) {
 //	system("cmd");
 	return 0;
 }
-/*0 ±0∑÷20√Î*/
